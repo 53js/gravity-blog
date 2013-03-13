@@ -1,70 +1,68 @@
+'use strict';
 gravityBlog.Views.applicationView = Backbone.View.extend({
 
-   el: $("#container"), 
+	el: $('#container'),
 
-  	events: {
-      "click #new-article":  "createArticle",
-      "click #add-article" : "showTools" 
-   },
-
-  	initialize: function() {
-      //this.collection appel la collection passée en paramètre dans le main.js
-  		this.addCollectionListener(this.collection);
-   },
-
-   addCollectionListener: function(collection) {
-	   collection.on('add', this.addOne, this);
-	   collection.on('remove', this.removeOne, this);
-	   collection.on('reset', this.reset, this);
+	events: {
+		'click #new-article': 'createArticle',
+		'click #add-article': 'showTools'
 	},
 
-	addOne : function(article){
-      var view = new gravityBlog.Views.articleView({
-         model : article
-      });
-      //on ajoute la vue au DOM
-		this.$el.find("#blog").prepend(view.render().el);
+	initialize: function() {
+		this.addCollectionListener(this.collection);
+	},
+
+	addCollectionListener: function(collection) {
+		collection.on('add', this.addOne, this);
+		collection.on('remove', this.removeOne, this);
+		collection.on('reset', this.reset, this);
+	},
+
+	addOne: function(article) {
+		var view = new gravityBlog.Views.articleView({
+			model : article
+		});
+		//on ajoute la vue au DOM
+		this.$el.find('#blog').prepend(view.render().el);
 		return false;
 	},
 
-	remove : function(){
+	remove: function() {
 	},
 
-	reset : function(){
+	reset: function() {
+		this.collection.each(this.addOne, this);
 	},
 
-   createArticle: function(){
-      var articleObj = {},
-    	    input_val = $("#new-title").val(),
-    	    textarea_val= $("#new-content").val();
+	createArticle: function(){
+		var articleObj = {},
+			inputVal = $('#new-title').val(),
+			textareaVal= $('#new-content').val();
 
-      if(input_val){
-         articleObj.title=input_val;
-      }
-      if(textarea_val){
-         articleObj.content = textarea_val;
-      }
-    	//if(input_val && textarea_val){
-    	this.collection.add(articleObj);
-      this.resetTools();
-    	this.hideTools();
-      //}
+		if(inputVal){
+			articleObj.title=inputVal;
+		}
+		if(textareaVal){
+			articleObj.content = textareaVal;
+		}
+		this.collection.create(articleObj);
+		this.resetTools();
+		this.hideTools();
+	},
 
-   },
+	resetTools: function() {
+		$('#new-title').val('');
+		$('#new-content').val('');
+	},
 
-   resetTools :function(){
-      $("#new-title").val("");
-      $("#new-content").val("");      
-   },
+	hideTools: function() {
+		$('#createTool').hide();
+		$('#add-article').show();
+	},
 
-   hideTools : function(){
-      $("#createTool").hide();
-      $("#add-article").show();
-   },
-
-   showTools : function(){
-    	$("#add-article").hide();
-    	$("#createTool").fadeIn();
-   }
+	showTools: function() {
+		$('#add-article').hide();
+		$('#createTool').fadeIn();
+	}
 
 });

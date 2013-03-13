@@ -20,7 +20,9 @@
     "trailing": true,
     "smarttabs": true,
     "globals": {
-        "$": "false",
-        "gravityBlog": "false"
+        "$": false,
+        "_": false,
+        "Backbone": false,
+        "gravityBlog": false
     }
 }
