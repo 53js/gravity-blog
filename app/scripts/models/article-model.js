@@ -7,7 +7,7 @@ gravityBlog.Models.ArticleModel = Backbone.Model.extend({
 	},
 
 	initialize: function() {
-		console.log('New article: ', this);
+		console.log('| New article: ', this);
     }
 
 });
