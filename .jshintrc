@@ -23,6 +23,7 @@
         "$": false,
         "_": false,
         "Backbone": false,
-        "gravityBlog": false
+        "gravityBlog": false,
+        "BackboneGravity": false
     }
 }

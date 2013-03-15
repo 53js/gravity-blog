@@ -11,6 +11,7 @@ gravityBlog.Views.applicationView = BackboneGravity.Views.WorldView.extend({
 
 	initialize: function() {
 		BackboneGravity.Views.WorldView.prototype.initialize.call(this);
+		this.setDebugSprite(document.getElementById('debug-canvas'));
 		this.addCollectionListener(this.collection);
 	},
 
@@ -26,13 +27,17 @@ gravityBlog.Views.applicationView = BackboneGravity.Views.WorldView.extend({
 		});
 		//on ajoute la vue au DOM
 		this.$el.find('#blog').prepend(view.render().el);
-		this.$el.height(this.$el.height() + view.$el.height())
-		if (this.debugCanvas)
+		this.$el.height(this.$el.height() + view.$el.height());
+		if (this.debugCanvas) {
 			this.debugCanvas.height = this.$el.height();
-		this.bodies['ground'].setPosition({y: this.$el.height()});
+		}
+		this.bodies.ground.setPosition({y: this.$el.height()});
 		this.createBody(view, {
 			x: view.$el.width() / 2,
-			y: view.$el.height() / 2
+			y: view.$el.height() / 2,
+			width: view.$el.outerWidth(),
+			height: view.$el.outerHeight(),
+			angle: Math.random() * 1.5 - 1.5
 		});
 		return false;
 	},
@@ -52,8 +57,9 @@ gravityBlog.Views.applicationView = BackboneGravity.Views.WorldView.extend({
 		});
 		var self = this;
 		function loop(i) {
-			if (!self.collection.models[i])
+			if (!self.collection.models[i]) {
 				return;
+			}
 			self.addOne(self.collection.models[i]);
 			i++;
 			window.setTimeout(function() {
