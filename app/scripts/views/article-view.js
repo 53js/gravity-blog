@@ -18,6 +18,10 @@ gravityBlog.Views.articleView = Backbone.View.extend({
 
 	render: function() {
 		this.$el.html(this.template(this.model.toJSON()));
+		this.trigger('resize', {
+			width: this.$el.outerWidth(),
+			height: this.$el.outerHeight()
+		});
 		return this;
 	},
 
