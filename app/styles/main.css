@@ -22,7 +22,7 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section{display
 	margin:0;
 }
 
-#debug {
+#debug-canvas {
 	position:absolute;
 	width:560px;
 	background:rgba(255, 255, 255, 0.1);

@@ -41,7 +41,6 @@ gravityBlog.Views.applicationView = BackboneGravity.Views.WorldView.extend({
 	},
 
 	reset: function() {
-		console.log($(window).width())
 		this.createBody({
 			cid: 'ground',
 			width: $(window).width() * 2,
@@ -52,7 +51,6 @@ gravityBlog.Views.applicationView = BackboneGravity.Views.WorldView.extend({
 			dynamic: false
 		});
 		var self = this;
-		console.log(self.collection.models.length)
 		function loop(i) {
 			if (!self.collection.models[i])
 				return;
