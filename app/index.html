@@ -13,7 +13,25 @@
 
 		<!-- build:css styles/styles.css -->
 		<link rel="stylesheet" href="styles/bootstrap.css"/>
+		<link rel="stylesheet/less" type="text/css" href="styles/style.less" />
 		<link rel="stylesheet" href="styles/main.css"/>
+		
+        <script type="text/javascript">
+            less = {
+                env: "development", // or "production"
+                async: true,       // load imports async
+                fileAsync: false,   // load imports async when in a page under 
+                                    // a file protocol
+                poll: 1000,         // when in watch mode, time in ms between polls
+                functions: {},      // user functions, keyed by name
+                dumpLineNumbers: "comments", // or "mediaQuery" or "all"
+                relativeUrls: false,// whether to adjust url's to be relative
+                                    // if false, url's are already relative to the
+                                    // entry less file
+                rootpath: ":/a.com/",// a path to add on to the start of every url 
+                                    //resource
+            };
+        </script>
 		<!-- endbuild -->
 		
 		<!-- build:js scripts/vendor/modernizr.js -->
@@ -67,9 +85,10 @@
 		<script src="components/jquery/jquery.min.js"></script>
 		<script src="components/underscore/underscore-min.js"></script>
 		<script src="components/backbone/backbone-min.js"></script>
+		<script src="components/less/less-1.3.3.min.js"></script>
 		<script src="components/backbone-gravity/lib/Box2dWeb-2.1.a.3.min.js"></script>
 		<script src="components/backbone-gravity/helpers/box2d-helper.js"></script>
-		<script src="components/backbone-gravity/helpers/backbone-gravity.js"></script>
+		<script src="components/backbone-gravity/helpers/backbone-gravity.js"></script>		
 		<script src="scripts/main.js"></script>
 		<script src="scripts/views/application-view.js"></script>
 		<script src="scripts/models/application-model.js"></script>
