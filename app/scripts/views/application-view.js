@@ -1,14 +1,16 @@
 'use strict';
-gravityBlog.Views.applicationView = Backbone.View.extend({
+gravityBlog.Views.applicationView = BackboneGravity.Views.WorldView.extend({
 
 	el: $('#container'),
 
 	events: {
 		'click #new-article': 'createArticle',
-		'click #add-article': 'showTools'
+		'click #add-article': 'showTools',
+		'click #toggle-debug': 'debug'
 	},
 
 	initialize: function() {
+		BackboneGravity.Views.WorldView.prototype.initialize.call(this);
 		this.addCollectionListener(this.collection);
 	},
 
@@ -24,6 +26,14 @@ gravityBlog.Views.applicationView = Backbone.View.extend({
 		});
 		//on ajoute la vue au DOM
 		this.$el.find('#blog').prepend(view.render().el);
+		this.$el.height(this.$el.height() + view.$el.height())
+		if (this.debugCanvas)
+			this.debugCanvas.height = this.$el.height();
+		this.bodies['ground'].setPosition({y: this.$el.height()});
+		this.createBody(view, {
+			x: view.$el.width() / 2,
+			y: view.$el.height() / 2
+		});
 		return false;
 	},
 
@@ -31,7 +41,29 @@ gravityBlog.Views.applicationView = Backbone.View.extend({
 	},
 
 	reset: function() {
-		this.collection.each(this.addOne, this);
+		console.log($(window).width())
+		this.createBody({
+			cid: 'ground',
+			width: $(window).width() * 2,
+			height: 10,
+			x: 560 / 2,
+			y: this.$el.height(),
+			angle: 0,
+			dynamic: false
+		});
+		var self = this;
+		console.log(self.collection.models.length)
+		function loop(i) {
+			if (!self.collection.models[i])
+				return;
+			self.addOne(self.collection.models[i]);
+			i++;
+			window.setTimeout(function() {
+				loop(i);
+			}, 2000);
+		}
+		loop(0);
+		this.update();
 	},
 
 	createArticle: function(){

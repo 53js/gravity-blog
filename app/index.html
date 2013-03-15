@@ -27,6 +27,7 @@
 
 		<div id="container">
 
+
 			<div id="header">
 
 				<header>
@@ -37,11 +38,14 @@
 						<button id="new-article"class="btn" type="button">Submit</button>
 					</div>
 					<button class="btn" id="add-article" type="button"><i class="icon-plus-sign"></i></button>
+					<button class="btn" id="toggle-debug" type="button"><i class="icon-screenshot"></i></button>
 				</header>
 
 			</div>
 
 			<div id="blog">
+				<canvas id="debug" width="560" height="0">
+				</canvas>
 			</div>
 
 		</div>
@@ -63,6 +67,9 @@
 		<script src="components/jquery/jquery.min.js"></script>
 		<script src="components/underscore/underscore-min.js"></script>
 		<script src="components/backbone/backbone-min.js"></script>
+		<script src="components/backbone-gravity/lib/Box2dWeb-2.1.a.3.min.js"></script>
+		<script src="components/backbone-gravity/helpers/box2d-helper.js"></script>
+		<script src="components/backbone-gravity/helpers/backbone-gravity.js"></script>
 		<script src="scripts/main.js"></script>
 		<script src="scripts/views/application-view.js"></script>
 		<script src="scripts/models/application-model.js"></script>

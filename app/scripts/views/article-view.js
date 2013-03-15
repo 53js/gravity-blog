@@ -47,6 +47,15 @@ gravityBlog.Views.articleView = Backbone.View.extend({
 		this.$el.find('label').show();
 		this.$el.find('p').show();
 		this.$el.find('.tools').hide();
+	},
+
+	update: function () {
+		var position = this.getPosition();
+		this.$el.css({
+			left: position.x - this.$el.outerWidth() / 2,
+			top: position.y - this.$el.outerHeight() / 2,
+			transform: 'rotate(' + this.getAngle() + 'deg)'
+		});
 	}
 
 });
