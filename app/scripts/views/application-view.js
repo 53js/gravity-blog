@@ -37,7 +37,7 @@ gravityBlog.Views.applicationView = BackboneGravity.Views.WorldView.extend({
 			y: view.$el.height() / 2,
 			width: view.$el.outerWidth(),
 			height: view.$el.outerHeight(),
-			angle: Math.random() * 1.5 - 1.5
+			angle: Math.random() * 1.5 - 0.75
 		});
 		return false;
 	},

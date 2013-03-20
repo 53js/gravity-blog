@@ -243,7 +243,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'coffee:dist',
-      'compass:server',
+      //'compass:server',
       'livereload-start',
       'connect:livereload',
       'open',

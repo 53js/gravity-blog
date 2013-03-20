@@ -64,9 +64,11 @@ gravityBlog.Views.articleView = Backbone.View.extend({
 	update: function () {
 		var position = this.getPosition();
 		this.$el.css({
-			left: position.x - this.$el.outerWidth() / 2,
-			top: position.y - this.$el.outerHeight() / 2,
-			transform: 'rotate(' + this.getAngle() + 'deg)'
+			//left: position.x - this.$el.outerWidth() / 2,
+			//top: position.y - this.$el.outerHeight() / 2,
+			transform:
+				'translate(' +  (position.x - this.$el.outerWidth() / 2) + 'px, ' + (position.y - this.$el.outerHeight() / 2) + 'px) ' +
+				'rotate(' + this.getAngle() + 'deg)'
 		});
 	}
 
