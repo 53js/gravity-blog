@@ -39,47 +39,32 @@
 						<button id="new-article"class="btn" type="button">Submit</button>
 					</div>
 					<button class="btn" id="add-article" type="button"><i class="icon-plus-sign"></i></button>
-					<button class="btn" id="toggle-debug" type="button"><i class="icon-screenshot"></i></button>
 				</header>
 
 			</div>
 
 			<div id="blog">
-				<canvas id="debug-canvas" width="560" height="0">
-				</canvas>
 			</div>
 
 		</div>
 
-		<!-- Template -->
-		<script type="text/template" id="article-template">
-			
-			<label><%- title %></label>
-			<p><%- content %></p>
-			<div class="tools edit">
-				<input class="edit-title" type="text" value="<%- title %>" />
-				<textarea class="edit-content" rows="3" type="text" ><%- content %></textarea>
-				<button class="btn edit-article" type="button">modify</button>
-			</div>
 
-		</script>
+		<!-- build:js scripts/vendor.js -->
+        <script src="components/jquery/jquery.min.js"></script>
+        <script src="components/underscore/underscore-min.js"></script>
+        <script src="components/backbone/backbone-min.js"></script>
+        <!-- endbuild -->
 
-		<!-- build:js scripts/scripts.js -->
-		<script src="components/jquery/jquery.min.js"></script>
-		<script src="components/underscore/underscore-min.js"></script>
-		<script src="components/backbone/backbone-min.js"></script>
-		<script src="components/backbone-gravity/lib/Box2dWeb-2.1.a.3.min.js"></script>
-		<script src="components/backbone-gravity/helpers/box2d-helper.js"></script>
-		<script src="components/backbone-gravity/helpers/backbone-gravity.js"></script>		
-		<script src="scripts/main.js"></script>
-		<script src="scripts/views/application-view.js"></script>
-		<script src="scripts/models/application-model.js"></script>
-		<script src="scripts/collections/application-collection.js"></script>
-		<script src="scripts/views/article-view.js"></script>
-		<script src="scripts/models/article-model.js"></script>
-		<script src="scripts/collections/article-collection.js"></script>
-		<script src="scripts/routes/application-router.js"></script>
-		<!-- endbuild -->
+        <!-- build:js scripts/main.js -->
+        <script src="scripts/main.js"></script>
+        <script src="scripts/routes/application-router.js"></script>
+        <script src="scripts/views/application-view.js"></script>
+        <script src="scripts/models/application-model.js"></script>
+        <script src="scripts/collections/application-collection.js"></script>
+        <script src="scripts/models/article-model.js"></script>
+        <script src="scripts/collections/article-collection.js"></script>
+        <script src="scripts/views/article-view.js"></script>
+        <!-- endbuild -->
 
 		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 		<script>

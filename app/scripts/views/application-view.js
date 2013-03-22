@@ -1,24 +1,15 @@
 'use strict';
-gravityBlog.Views.applicationView = BackboneGravity.Views.WorldView.extend({
+gravityBlog.Views.applicationView = Backbone.View.extend({
 
 	el: $('#container'),
 
 	events: {
 		'click #new-article': 'createArticle',
-		'click #add-article': 'showTools',
-		'click #toggle-debug': 'debug'
+		'click #add-article': 'showTools'
 	},
 
 	initialize: function() {
-		BackboneGravity.Views.WorldView.prototype.initialize.call(this);
-		this.setDebugSprite(document.getElementById('debug-canvas'));
-		this.addCollectionListener(this.collection);
-	},
-
-	addCollectionListener: function(collection) {
-		collection.on('add', this.addOne, this);
-		collection.on('remove', this.removeOne, this);
-		collection.on('reset', this.reset, this);
+		this.collection.on('add',this.addOne, this);
 	},
 
 	addOne: function(article) {
@@ -27,61 +18,12 @@ gravityBlog.Views.applicationView = BackboneGravity.Views.WorldView.extend({
 		});
 		//on ajoute la vue au DOM
 		this.$el.find('#blog').prepend(view.render().el);
-		this.$el.height(this.$el.height() + view.$el.height());
-		if (this.debugCanvas) {
-			this.debugCanvas.height = this.$el.height();
-		}
-		this.bodies.ground.setPosition({y: this.$el.height()});
-		this.createBody(view, {
-			x: view.$el.width() / 2,
-			y: view.$el.height() / 2,
-			width: view.$el.outerWidth(),
-			height: view.$el.outerHeight(),
-			angle: Math.random() * 1.5 - 0.75
-		});
-		return false;
-	},
-
-	remove: function() {
-	},
-
-	reset: function() {
-		this.createBody({
-			cid: 'ground',
-			width: $(window).width() * 2,
-			height: 10,
-			x: 560 / 2,
-			y: this.$el.height(),
-			angle: 0,
-			dynamic: false
-		});
-		var self = this;
-		function loop(i) {
-			if (!self.collection.models[i]) {
-				return;
-			}
-			self.addOne(self.collection.models[i]);
-			i++;
-			window.setTimeout(function() {
-				loop(i);
-			}, 2000);
-		}
-		loop(0);
-		this.update();
 	},
 
 	createArticle: function(){
-		var articleObj = {},
-			inputVal = $('#new-title').val(),
-			textareaVal= $('#new-content').val();
-
-		if(inputVal){
-			articleObj.title=inputVal;
-		}
-		if(textareaVal){
-			articleObj.content = textareaVal;
-		}
-		this.collection.create(articleObj);
+		var inputVal = $('#new-title').val() || null,
+			textareaVal= $('#new-content').val() || null;
+		this.collection.add({title:inputVal, content:textareaVal });
 		this.resetTools();
 		this.hideTools();
 	},
