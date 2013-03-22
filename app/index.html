@@ -48,6 +48,19 @@
 
 		</div>
 
+		<!-- Template -->
+		<script type="text/template" id="article-template">
+			
+			<label><%- title %></label>
+			<p><%- content %></p>
+			<div class="tools edit">
+				<input class="edit-title" type="text" value="<%- title %>" />
+				<textarea class="edit-content" rows="3" type="text" ><%- content %></textarea>
+				<button class="btn edit-article" type="button">modify</button>
+			</div>
+
+		</script>
+
 
 		<!-- build:js scripts/vendor.js -->
         <script src="components/jquery/jquery.min.js"></script>
