@@ -9,8 +9,16 @@ gravityBlog.Views.applicationView = Backbone.View.extend({
 	},
 
 	initialize: function() {
-		this.collection.on('add',this.addOne, this);
+		this.addCollectionListener(this.collection);
+		
 	},
+
+	addCollectionListener: function(collection) {
+		collection.on('add', this.addOne, this);
+		collection.on('remove', this.removeOne, this);
+		collection.on('reset', this.reset, this);
+	},
+
 
 	addOne: function(article) {
 		var view = new gravityBlog.Views.articleView({
@@ -23,9 +31,13 @@ gravityBlog.Views.applicationView = Backbone.View.extend({
 	createArticle: function(){
 		var inputVal = $('#new-title').val() || null,
 			textareaVal= $('#new-content').val() || null;
-		this.collection.add({title:inputVal, content:textareaVal });
+		this.collection.create({title:inputVal, content:textareaVal });
 		this.resetTools();
 		this.hideTools();
+	},
+
+	reset : function(){
+		this.collection.each(this.addOne, this);
 	},
 
 	resetTools: function() {

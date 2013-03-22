@@ -9,10 +9,12 @@ window.gravityBlog = {
 		console.log('| Gravity Blog Initialisation');
 
 		var articleList = new gravityBlog.Collections.ArticleCollection();
+		articleList.fetch();
 
 		gravityBlog.view = new gravityBlog.Views.applicationView({
 			collection : articleList,
 		});
+
 	}
 };
 
