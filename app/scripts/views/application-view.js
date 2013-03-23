@@ -6,7 +6,14 @@ gravityBlog.Views.applicationView = BackboneGravity.Views.WorldView.extend({
 	events: {
 		'click #new-article': 'createArticle',
 		'click #add-article': 'showTools',
-		'click #toggle-debug': 'debug'
+		'click #toggle-debug': 'debug',
+		'click #boom': 'boom'
+	},
+
+	boom: function(){
+		_.each(this.bodies, function(body){ 
+			body.move();
+		});
 	},
 
 	initialize: function() {

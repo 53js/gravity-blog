@@ -89,6 +89,10 @@ button{
 #toggle-debug{	
 	top:0;  
 }
+#boom{	
+	top:0;  
+	right:50px;
+}
 #createTool{
 	display: none;
 }
