@@ -10,12 +10,16 @@ window.gravityBlog = {
 
 		console.log('| Models \n');
 
-		var unArticle = new gravityBlog.Models.ArticleModel(); //defaut
-		console.log('unArticle.get(title)>>' , unArticle.get('title')); //getter
-		unArticle.set('title', 'un titre personalisé'); //setter
-		console.log("unArticle.set('title', 'un titre personalisé')");
+		var unArticle = new gravityBlog.Models.ArticleModel(); // attributs par defaut
+		//get
+		console.log('unArticle.get(title)>>' , unArticle.get('title'));
+		//set
+		unArticle.set('title', 'un titre personalisé');
+		//get
 		console.log('unArticle.get(title)>>',unArticle.get('title'));
-		unArticle.set('subtitle','yeah ! '); //set a new attribut for this object
+		//set a new attribut for this object
+		unArticle.set('subtitle','yeah ! ');
+		//print all my attributs
 		console.log('unArticle.attributes>>' , unArticle.attributes ,'\n');
 
 		var unAutre = new gravityBlog.Models.ArticleModel({title: 'Tuto Backbone', content: 'PART 1 : models'});
@@ -25,7 +29,7 @@ window.gravityBlog = {
 		var articleList = new gravityBlog.Collections.ArticleCollection();
 		articleList.add(unArticle);
 		articleList.add([unAutre , {title:'Tricks', content:'on peut faire ça ! '}]);
-		console.log(articleList)
+		console.log(articleList);
 
 	}
 };
