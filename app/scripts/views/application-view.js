@@ -9,6 +9,8 @@ gravityBlog.Views.applicationView = Backbone.View.extend({
 	},
 
 	initialize: function() {
+		//on attache la méthode addOne de l'objet courant
+		//à l'evenement add de notre liste d'article
 		this.collection.on('add',this.addOne, this);
 	},
 
@@ -21,10 +23,15 @@ gravityBlog.Views.applicationView = Backbone.View.extend({
 	},
 
 	createArticle: function(){
+		//on récupère les valeurs des inputs
 		var inputVal = $('#new-title').val() || null,
 			textareaVal= $('#new-content').val() || null;
+		//On ajoute à notre collection directement un objet 
+		//qui sera transformé en model Article automatiquement par notre collection
 		this.collection.add({title:inputVal, content:textareaVal });
+		//on reset les inputs
 		this.resetTools();
+		//on hide les inputs
 		this.hideTools();
 	},
 
